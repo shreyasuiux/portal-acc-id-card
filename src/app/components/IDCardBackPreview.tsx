@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import logo from 'figma:asset/6dce495d999ed88e54f35e49635962b824088162.png';
+import logo from '../../assets/6dce495d999ed88e54f35e49635962b824088162.png';
 import type { BackSideText, Branch } from '../utils/templateData';
 import { DEFAULT_BACK_TEXT } from '../utils/defaultBackText';
 

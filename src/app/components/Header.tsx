@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, X, LogOut, User } from 'lucide-react';
 import { toast } from 'sonner';
-import accLogo from 'figma:asset/93b0f57f0c6cb722d5511f7e11c5f2d8141cb070.png';
+import accLogo from '../../assets/93b0f57f0c6cb722d5511f7e11c5f2d8141cb070.png';
 import { dispatchAuthChange } from '../routes.tsx';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 

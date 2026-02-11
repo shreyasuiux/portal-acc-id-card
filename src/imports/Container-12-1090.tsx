@@ -1,4 +1,4 @@
-import imgIdCardPreview from "figma:asset/74a77ec551d0ae2abfcec7d0fb127730ca1e34b8.png";
+import imgIdCardPreview from '../assets/74a77ec551d0ae2abfcec7d0fb127730ca1e34b8.png';
 
 function IdCardPreview() {
   return (

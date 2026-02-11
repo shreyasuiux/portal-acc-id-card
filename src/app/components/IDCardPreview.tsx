@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Sparkles, Pencil } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logo from 'figma:asset/6dce495d999ed88e54f35e49635962b824088162.png';
+import logo from '../../assets/6dce495d999ed88e54f35e49635962b824088162.png';
 import { IDCardBackPreview } from './IDCardBackPreview';
 import { templates, type Template, type FrontSideText } from '../utils/templateData';
 import { ImageCropModal } from './ImageCropModal';
