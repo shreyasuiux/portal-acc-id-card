@@ -1,0 +1,72 @@
+/**
+ * 🔒 ROBOTO FONT - LOCAL EMBEDDING (CRITICAL FOR PDF EXPORT)
+ * 
+ * ⚠️ PRODUCTION FIX:
+ * - Fonts loaded LOCALLY (not CDN-only)
+ * - Prevents serif fallback (Times/Georgia)
+ * - Ensures Image 1 style (clean Roboto) for ALL users
+ * - NEVER Image 2 style (serif fallback)
+ * 
+ * WEIGHTS:
+ * - 400: Regular
+ * - 500: Medium
+ * - 700: Bold
+ * 
+ * CRITICAL: font-display: block prevents fallback rendering
+ */
+
+/* Roboto Regular (400) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.woff2') format('woff2'),
+       url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block; /* Block rendering until font loads (prevents serif fallback) */
+}
+
+/* Roboto Medium (500) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Medium.woff2') format('woff2'),
+       url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Roboto Bold (700) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.woff2') format('woff2'),
+       url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+/**
+ * 🚫 GLOBAL FONT LOCK
+ * 
+ * Forces Roboto on ALL elements (no fallbacks)
+ * This prevents serif fonts from appearing anywhere
+ */
+* {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+html,
+body,
+#root {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+/**
+ * 🎯 CRITICAL: Prevent font substitution in PDF export
+ */
+.id-card-container,
+.id-card-container *,
+[data-export-target],
+[data-export-target] * {
+  font-family: 'Roboto', sans-serif !important;
+}

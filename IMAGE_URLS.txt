@@ -1,0 +1,193 @@
+HR ID Card Generator - Sample Employee Image URLs
+================================================
+
+Direct Download URLs for 10 Sample Employee Photos
+All images are 800x800px professional headshots from Unsplash
+
+
+EMPLOYEE 1: John Smith (24EMP001.jpg)
+--------------------------------------
+https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 2: Sarah Johnson (24EMP002.jpg)
+-----------------------------------------
+https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 3: Michael Brown (24EMP003.jpg)
+-----------------------------------------
+https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 4: Emily Davis (24EMP004.jpg)
+---------------------------------------
+https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 5: David Wilson (15EMP005.jpg)
+----------------------------------------
+https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 6: Lisa Anderson (15EMP006.jpg)
+-----------------------------------------
+https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 7: James Martinez (22EMP007.jpg)
+------------------------------------------
+https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 8: Jennifer Taylor (22EMP008.jpg)
+-------------------------------------------
+https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 9: Robert Lee (23EMP009.jpg)
+--------------------------------------
+https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&h=800&fit=crop&q=80
+
+
+EMPLOYEE 10: Mary White (23EMP010.jpg)
+---------------------------------------
+https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&h=800&fit=crop&q=80
+
+
+INSTRUCTIONS
+============
+
+Manual Download Method:
+1. Copy each URL above
+2. Paste into browser address bar
+3. Right-click image and "Save As"
+4. Name file exactly as shown (e.g., 24EMP001.jpg)
+5. Repeat for all 10 images
+6. Create ZIP file containing all 10 images
+7. Upload to HR ID Card Generator app
+
+
+IMPORTANT FILE NAMING RULES
+============================
+
+✅ CORRECT:
+- 24EMP001.jpg (exactly as shown)
+- 24EMP002.jpg
+- 15EMP005.jpg
+- etc.
+
+❌ INCORRECT:
+- john_smith.jpg (don't use names)
+- 24emp001.jpg (wrong case)
+- 24EMP001 .jpg (extra space)
+- photos/24EMP001.jpg (in subfolder)
+
+
+REQUIRED ZIP STRUCTURE
+======================
+
+employee_photos.zip
+├── 24EMP001.jpg
+├── 24EMP002.jpg
+├── 24EMP003.jpg
+├── 24EMP004.jpg
+├── 15EMP005.jpg
+├── 15EMP006.jpg
+├── 22EMP007.jpg
+├── 22EMP008.jpg
+├── 23EMP009.jpg
+└── 23EMP010.jpg
+
+All files MUST be in the root of the ZIP (no subfolders)
+
+
+EASIER METHODS
+==============
+
+Instead of manually downloading, use:
+
+1. Browser Tool (EASIEST):
+   - Open: download_sample_images.html
+   - Click download button
+   - Done!
+
+2. Python Script:
+   - Run: python3 download_sample_images.py
+   - Automatic download and ZIP creation
+
+3. Bash Script (Linux/Mac):
+   - Run: ./download_sample_images.sh
+   - Automatic download and ZIP creation
+
+
+CSV DATA TO USE
+===============
+
+Download the sample CSV from the app:
+1. Open HR ID Card Generator
+2. Go to Bulk Upload mode
+3. Click "Download Sample CSV Template"
+4. Upload this CSV along with the photo ZIP
+
+
+COMPLETE WORKFLOW
+=================
+
+1. Download sample CSV from app → employee_bulk_upload_sample.csv
+2. Create photo ZIP (use URLs above) → employee_photos.zip
+3. Upload CSV to app → validates 10 employees
+4. Upload photo ZIP to app → matches 10 photos
+5. Review in Bulk Employee Manager → verify all matched
+6. Click "Generate & Export PDF" → creates bulk-id-cards_10-employees.pdf
+7. Done! 🎉
+
+
+NEED MORE HELP?
+===============
+
+See these detailed guides:
+- QUICK_START.md - 1-minute guide
+- SAMPLE_DATA_README.md - complete documentation
+- SAMPLE_IMAGES_GUIDE.md - detailed image guide
+- VISUAL_GUIDE.md - diagrams and flowcharts
+- SAMPLE_PACKAGE_INDEX.md - navigation hub
+
+
+IMAGE SPECIFICATIONS
+====================
+
+Resolution: 800 x 800 pixels
+Format: JPG (JPEG)
+Quality: High (q=80)
+Source: Unsplash.com
+License: Free to use
+Background: Will be automatically removed by app
+Recommended for: Testing and demonstration purposes
+
+
+PRODUCTION USE
+==============
+
+For real employee ID cards:
+- Use actual employee photos
+- Recommended resolution: 1000 x 1000 pixels or higher
+- Any background works (auto-removed)
+- Name files by Employee ID (not employee name)
+- Follow same ZIP structure
+
+
+QUESTIONS?
+==========
+
+The HR ID Card Generator app provides detailed error messages
+and validation feedback. Follow the error messages to fix any issues.
+
+Most common issue: Filename doesn't match Employee ID exactly
+Solution: Ensure filenames match IDs in CSV (case-sensitive)
+
+
+========================================
+Ready to start? Use the easiest method:
+Open download_sample_images.html
+========================================

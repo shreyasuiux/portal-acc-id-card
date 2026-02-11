@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Employee Images - HR ID Card Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1em;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .instructions h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #60a5fa;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            color: #cbd5e1;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #3b82f6, #a855f7);
+            color: white;
+            padding: 18px 36px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .progress {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .employee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .employee-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .employee-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+        }
+
+        .employee-card.downloaded {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .employee-id {
+            font-weight: 700;
+            color: #60a5fa;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .employee-name {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .status.pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .status.downloading {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .log {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9em;
+        }
+
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px 0;
+        }
+
+        .log-entry.success {
+            color: #10b981;
+        }
+
+        .log-entry.error {
+            color: #ef4444;
+        }
+
+        .log-entry.info {
+            color: #60a5fa;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📸 Sample Employee Images</h1>
+            <p>Download professional headshot images for bulk ID card testing</p>
+        </div>
+
+        <div class="instructions">
+            <h2>📋 Instructions</h2>
+            <ol>
+                <li>Click the "Download All Images as ZIP" button below</li>
+                <li>Wait for all 10 employee photos to download</li>
+                <li>The ZIP file will be automatically created and downloaded</li>
+                <li>Use this ZIP file with the sample CSV in the HR ID Card Generator</li>
+            </ol>
+        </div>
+
+        <div class="button-container">
+            <button id="downloadBtn" class="download-btn">
+                <span>📦</span>
+                <span>Download All Images as ZIP</span>
+            </button>
+        </div>
+
+        <div id="progress" class="progress hidden">
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill">0%</div>
+            </div>
+            <p id="progressText">Preparing...</p>
+        </div>
+
+        <div class="employee-grid" id="employeeGrid"></div>
+
+        <div id="log" class="log hidden"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        const EMPLOYEES = [
+            { id: '24EMP001', name: 'John Smith', url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=800&fit=crop&q=80' },
+            { id: '24EMP002', name: 'Sarah Johnson', url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop&q=80' },
+            { id: '24EMP003', name: 'Michael Brown', url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=800&fit=crop&q=80' },
+            { id: '24EMP004', name: 'Emily Davis', url: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=800&fit=crop&q=80' },
+            { id: '15EMP005', name: 'David Wilson', url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=800&fit=crop&q=80' },
+            { id: '15EMP006', name: 'Lisa Anderson', url: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=800&h=800&fit=crop&q=80' },
+            { id: '22EMP007', name: 'James Martinez', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&q=80' },
+            { id: '22EMP008', name: 'Jennifer Taylor', url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&h=800&fit=crop&q=80' },
+            { id: '23EMP009', name: 'Robert Lee', url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&h=800&fit=crop&q=80' },
+            { id: '23EMP010', name: 'Mary White', url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&h=800&fit=crop&q=80' }
+        ];
+
+        let employeeStates = {};
+
+        function initializeUI() {
+            const grid = document.getElementById('employeeGrid');
+            
+            EMPLOYEES.forEach(emp => {
+                employeeStates[emp.id] = 'pending';
+                
+                const card = document.createElement('div');
+                card.className = 'employee-card';
+                card.id = `card-${emp.id}`;
+                card.innerHTML = `
+                    <div class="employee-id">${emp.id}</div>
+                    <div class="employee-name">${emp.name}</div>
+                    <div class="status pending" id="status-${emp.id}">Pending</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateEmployeeStatus(empId, status, text) {
+            employeeStates[empId] = status;
+            const statusEl = document.getElementById(`status-${empId}`);
+            const cardEl = document.getElementById(`card-${empId}`);
+            
+            if (statusEl) {
+                statusEl.className = `status ${status}`;
+                statusEl.textContent = text;
+            }
+            
+            if (cardEl && status === 'success') {
+                cardEl.classList.add('downloaded');
+            }
+        }
+
+        function addLog(message, type = 'info') {
+            const log = document.getElementById('log');
+            log.classList.remove('hidden');
+            
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateProgress(current, total) {
+            const progress = document.getElementById('progress');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progress.classList.remove('hidden');
+            
+            const percentage = Math.round((current / total) * 100);
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+            progressText.textContent = `Downloading ${current} of ${total} images...`;
+        }
+
+        async function downloadImage(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return await response.blob();
+        }
+
+        async function downloadAllImages() {
+            const btn = document.getElementById('downloadBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span>⏳</span><span>Downloading...</span>';
+            
+            addLog('🚀 Starting download process...', 'info');
+            
+            const zip = new JSZip();
+            let successCount = 0;
+            let errorCount = 0;
+            
+            for (let i = 0; i < EMPLOYEES.length; i++) {
+                const emp = EMPLOYEES[i];
+                
+                try {
+                    updateEmployeeStatus(emp.id, 'downloading', 'Downloading...');
+                    addLog(`⬇️ Downloading ${emp.name} (${emp.id})...`, 'info');
+                    
+                    const blob = await downloadImage(emp.url);
+                    zip.file(`${emp.id}.jpg`, blob);
+                    
+                    updateEmployeeStatus(emp.id, 'success', '✓ Downloaded');
+                    addLog(`✅ ${emp.name} downloaded successfully`, 'success');
+                    successCount++;
+                    
+                } catch (error) {
+                    updateEmployeeStatus(emp.id, 'error', '✗ Failed');
+                    addLog(`❌ Failed to download ${emp.name}: ${error.message}`, 'error');
+                    errorCount++;
+                }
+                
+                updateProgress(i + 1, EMPLOYEES.length);
+            }
+            
+            if (successCount > 0) {
+                addLog('📦 Creating ZIP file...', 'info');
+                
+                const progressText = document.getElementById('progressText');
+                progressText.textContent = 'Creating ZIP file...';
+                
+                const zipBlob = await zip.generateAsync({ 
+                    type: 'blob',
+                    compression: 'DEFLATE',
+                    compressionOptions: { level: 6 }
+                });
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(zipBlob);
+                link.download = 'employee_photos.zip';
+                link.click();
+                
+                addLog(`✨ SUCCESS! Downloaded ${successCount}/${EMPLOYEES.length} images`, 'success');
+                addLog('💾 ZIP file downloaded: employee_photos.zip', 'success');
+                
+                btn.innerHTML = '<span>✓</span><span>Download Complete!</span>';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                progressText.textContent = `Complete! ${successCount}/${EMPLOYEES.length} images downloaded`;
+                
+            } else {
+                addLog('❌ No images downloaded successfully', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔄</span><span>Try Again</span>';
+            }
+            
+            if (errorCount > 0) {
+                addLog(`⚠️ ${errorCount} images failed to download`, 'error');
+            }
+        }
+
+        document.getElementById('downloadBtn').addEventListener('click', downloadAllImages);
+        
+        initializeUI();
+        addLog('📋 Ready to download 10 employee images', 'info');
+    </script>
+</body>
+</html>
