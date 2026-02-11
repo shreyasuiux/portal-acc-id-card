@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
-import accLogo from 'figma:asset/93b0f57f0c6cb722d5511f7e11c5f2d8141cb070.png';
+import accLogo from '../../assets/93b0f57f0c6cb722d5511f7e11c5f2d8141cb070.png';
 import { dispatchAuthChange } from '../routes';
 
 export function LoginPage() {
